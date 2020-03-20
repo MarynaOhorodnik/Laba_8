@@ -3,6 +3,7 @@
 '''
 import string as str
 import random
+import timeit
 while True:
     while True:
         K = input('Заповнювати елемети рандомно(r) чи вручну(v): ')
@@ -12,7 +13,7 @@ while True:
         elif K == 'r':
             text = ''.join(random.choice(str.ascii_lowercase) for i in range(int(input('Length of text: '))))
             pattern = ''.join(random.choice(str.ascii_lowercase) for i in range(int(input('Length of pattern: '))))
-            print(f' Text: {text}, \n pattern: {pattern}')
+            print(f'Text: {text}, \nPattern: {pattern}')
             break
         else:
             print('Введіть v або r.')
@@ -28,6 +29,8 @@ while True:
         print(f'Підрядок знайдений в позиції {i}, порівнянь було здійснено {count}')
     else:
         print(f'Елемент не знайдений, порівнянь було здійснено {count}')
+    t = timeit.timeit('"-".join(str(n) for n in range(100))', number=10000)
+    print('Час виконання алгоритму пошуку: {:.5f}'.format(t))
 
     answer = input('Бажаєте запустити програму ще раз? Так (+), ні (будь-що) ')
     if answer == '+':
